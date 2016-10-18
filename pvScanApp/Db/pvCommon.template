@@ -1,0 +1,261 @@
+record(stringout, "$(P):IOC") {
+  field(DESC, "$(DESC)")
+  field(VAL,  "$(IOC)")
+  field(PINI, "1")
+}
+record(waveform, "$(P):SCRIPT") {
+  field(DESC, "pvScan script")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(waveform, "$(P):SCRIPT:ABORT") {
+  field(DESC, "pvScan abort script")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(bo, "$(P):RUNFLAG") {
+  field(DESC, "pvScan run flag")
+  field(ZNAM, "Stopped")
+  field(ONAM, "Running")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):SCAN:PRESCAN") {
+  field(DESC, "Prescan enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(waveform, "$(P):WRAPPERSCRIPT") {
+  field(DESC, "pvScan wrapper script")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(bo, "$(P):WRAPPERFLAG") {
+  field(DESC, "pvScan wrapper flag")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(longout, "$(P):WRAPPERPID") {
+  field(DESC, "PID of wrapper process")
+}
+record(longout, "$(P):NRUNS") {
+  field(DESC, "Number of runs")
+  field(LOPR, "1")
+  field(HOPR, "1e6")
+  field(DRVL, "1")
+  field(DRVH, "1e6")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record( stringin, "$(P):TIME"){
+  field( DESC, "current date and time")
+  field( DTYP, "Soft Timestamp")
+  field( SCAN, "1 second")
+  field( INP,  "@%m/%d/%Y %H:%M:%S")
+}
+record(waveform, "$(P):MSG") {
+  field(DESC, "Print message")
+  field(FTVL, "CHAR")
+  field(NELM, "100")
+}
+record(longin, "$(P):PID") {
+  field(DESC, "PID of process")
+}
+record(bo, "$(P):NSIDES") {
+  field(DESC, "1 or 2-sided scan")
+  field(ZNAM, "Both sides")
+  field(ONAM, "One side")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):SCAN:ENABLE") {
+  field(DESC, "Scan enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(stringout, "$(P):SCAN:NAME") {
+  field(DESC, "Scan name")
+  field(PINI, "1")
+}
+record(stringout, "$(P):SCAN:TARGETNAME") {
+  field(DESC, "Target name")
+  field(PINI, "1")
+}
+record(mbbo,"$(P):SCAN:MODE") {
+    field(DTYP, "Scan Mode")
+    field(ZRVL, "0")
+    field(ZRST, "None")
+    field(ONVL, "1")
+    field(ONST, "1-D")
+    field(TWVL, "2")
+    field(TWST, "2-D")
+    field(THVL, "3")
+    field(THST, "Grab images only")
+    field(FRVL, "4")
+    field(FRST, "WDM SS routine")
+    field(VAL,  "1")
+    field(PINI, "1")
+}
+record(ao, "$(P):BEAMRATE") {
+  field(DESC, "Beam rep rate")
+  field(PREC, "1")
+  field(VAL,  "10")
+  field(PINI, "1")
+}
+#--- image grabbing ----------------------------------------
+record(bo, "$(P):GRABIMAGES:ENABLE") {
+  field(DESC, "Grab images enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(longout, "$(P):GRABIMAGES:N") {
+  field(DESC, "N images to grab")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(waveform, "$(P):IMAGE:FILEPATH") {
+  field(DESC, "Image filepath")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(bo, "$(P):GRABIMAGES:CAPTUREMODE") {
+  field(DESC, "Grab images capture mode")
+  field(ZNAM, "Individual")
+  field(ONAM, "Buffered")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):GRABIMAGES:SAMPLE") {
+  field(DESC, "Grab sample images enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):GRABIMAGES:TIFFTS") {
+  field(DESC, "Write tiff tag timestamps into filenames")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):GRABIMAGES:STEPNUMBER") {
+  field(DESC, "Write step number into filenames")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(longin, "$(P):GRABIMAGES:RATE") {
+  field(DESC, "Grab images rate")
+  field(INP,  "")
+  field(EGU,  "Hz")
+}
+record(bo, "$(P):GRABIMAGES:SEQ2ENABLE") {
+  field(DESC, "Grab second image sequence after first")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(longout, "$(P):GRABIMAGES:N2") {
+  field(DESC, "N images to grab for seq. 2")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(ao, "$(P):GRABIMAGES:SEQ2DELAY") {
+  field(DESC, "Delay between image sequences")
+  field(PREC, "3")
+  field(EGU,  "s")
+  field(VAL,  "0.5")
+  field(PINI, "1")
+}
+record(longout, "$(P):GRABIMAGES:DATATIME") {
+  field(DESC, "Data capture time")
+  field(VAL,  "5")
+  field(EGU,  "s")
+  field(PINI, "1")
+}
+#--- data logging ----------------------------------------
+record(longout, "$(P):DATA:NPTS") {
+  field(DESC, "N points to log")
+  field(PINI, "1")
+}
+record(bo, "$(P):DATA:ENABLE") {
+  field(DESC, "Data log enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(longout, "$(P):DATA:FLAG") {
+  field(DESC, "Data log flag")
+}
+record(ao, "$(P):DATA:INT") {
+  field(DESC, "Data log interval")
+  field(PREC, "3")
+  field(EGU,  "s")
+  field(VAL,  "0.5")
+  field(PINI, "1")
+}
+record(waveform, "$(P):DATA:FILEPATH") {
+  field(DESC, "Data filepath")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(bo, "$(P):DATA:FILEPATH:AUTOSET") {
+  field(DESC, "Auto set data filepath")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(waveform, "$(P):DATA:FILENAME") {
+  field(DESC, "Data file name")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(bo, "$(P):DATA:PLOTTIMES") {
+  field(DESC, "Plot data log PV.get times")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):DATA:FORMAT") {
+  field(DESC, "Format data")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+# Log file ---------------------------
+record(waveform, "$(P):LOG:FILENAME") {
+  field(DESC, "Log file name")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+record(bo, "$(P):LOG:ENABLE") {
+  field(DESC, "Log file enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
+

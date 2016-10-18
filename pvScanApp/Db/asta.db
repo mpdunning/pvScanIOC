@@ -1,0 +1,222 @@
+#--- for ASTA ----------------------------------------
+record(ao, "$(P):RADIUS") {
+  field(DESC, "Radius")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(LOPR, "-1000")
+  field(HOPR, "1000")
+  field(VAL,  "1.31")
+  field(PINI, "1")
+}
+record(ao, "$(P):RADIUS2") {
+  field(DESC, "Radius 2")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(LOPR, "-1000")
+  field(HOPR, "1000")
+  field(VAL,  "-0.6")
+  field(PINI, "1")
+}
+record(calcout, "$(P):RADIUS:AUTOSET") {
+  field(DESC, "Radius autoset")
+  field(INPA, "MOTR:AS01:MC02:CH8:MOTOR.RBV")
+  field(INPB, "$(P):SCANPV2:OFFSET")
+  field(CALC, "A-B")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(OUT,  "$(P):RADIUS PP")
+}
+record(bo, "$(P):RESET:ENABLE") {
+  field(DESC, "Reset enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(longout, "$(P):NRESETS") {
+  field(DESC, "N resets")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(ao, "$(P):MOVE:PHI:INC") {
+  field(DESC, "Move Phi increment")
+  field(LOPR, "0")
+  field(HOPR, "360")
+  field(PREC, "3")
+}
+record(calcout, "$(P):MOVE:PHI:UP") {
+  field(DESC, "Move Phi up by increment")
+  field(INPA, "$(P):MOVE:PHI")
+  field(INPB, "$(P):MOVE:PHI:INC")
+  field(OUT,  "$(P):MOVE:PHI PP")
+  field(CALC, "A+B")
+  field(PREC, "3")
+}
+record(calcout, "$(P):MOVE:PHI:DOWN") {
+  field(DESC, "Move Phi down by increment")
+  field(INPA, "$(P):MOVE:PHI")
+  field(INPB, "$(P):MOVE:PHI:INC")
+  field(OUT,  "$(P):MOVE:PHI PP")
+  field(CALC, "A-B")
+  field(PREC, "3")
+}
+record(ao, "$(P):MOVE:PHI") {
+  field(DESC, "Move Phi")
+  field(LOPR, "-360")
+  field(HOPR, "360")
+  field(PREC, "3")
+  field(OUT, "$(P):MOVE:PHI:WRITE PP")
+}
+record(ao, "$(P):MOVE:PHI:WRITE") {
+  field(DESC, "Move Phi")
+  field(SDIS, "$(P):MOVE:PHI:SYNC.PACT")
+  field(DISV, "1")
+  field(LOPR, "-360")
+  field(HOPR, "360")
+  field(PREC, "3")
+  field(OUT,  "ASTA:POLX01:AO:ABSMOV CPP")
+  field(FLNK, "$(P):MOVE:PHI:FO.PROC")
+}
+record(fanout, "$(P):MOVE:PHI:FO") {
+  field(DESC, "Move Phi fanout")
+  field(LNK1,  "$(P):MOVE:Y.PROC")
+  field(LNK2,  "$(P):MOVE:PHI:GO.PROC")
+}
+record(longout, "$(P):MOVE:PHI:GO") {
+  field(DESC, "Press Pollux Go button")
+  field(OUT,  "ASTA:POLX01:BO:GOABS PP")
+  field(VAL,  "1")
+}
+record(ai, "$(P):MOVE:PHI:RBV") {
+  field(DESC, "Move Phi")
+  field(INP,  "ASTA:POLX01:AI:ACTPOS CPP")
+  field(PREC, "3")
+  field(FLNK, "$(P):MOVE:PHI:SYNC.PROC")
+}
+record(ao, "$(P):MOVE:PHI:SYNC") {
+  field(DESC, "Move Phi")
+  field(PREC, "3")
+  field(DOL,  "$(P):MOVE:PHI:RBV NPP")
+  field(OMSL, "closed_loop")
+  field(OUT,  "$(P):MOVE:PHI PP")
+}
+record(calcout, "$(P):MOVE:Y") {
+  field(DESC, "Move Y with Phi")
+  field(INPA, "$(P):MOVE:PHI")
+  field(INPB, "$(P):RADIUS")
+  field(INPC, "$(P):RADIUS2")
+  field(INPD, "$(P):SCANPV2:OFFSET")
+  field(INPE, "$(P):SCANPV1:OFFSET")
+  field(CALC, "D + B*COS((A-E)*PI/180) - C*SIN((A-E)*PI/180)")
+  field(OUT,  "MOTR:AS01:MC02:CH8:MOTOR CPP")
+  field(FLNK, "$(P):MOVE:Z.PROC")
+}
+record(calcout, "$(P):MOVE:Z") {
+  field(DESC, "Move Z with Phi")
+  field(INPA, "$(P):MOVE:PHI")
+  field(INPB, "$(P):RADIUS")
+  field(INPC, "$(P):RADIUS2")
+  field(INPD, "$(P):SCANPV3:OFFSET")
+  field(INPE, "$(P):SCANPV1:OFFSET")
+  field(CALC, "D + B*SIN((A-E)*PI/180) + C*(1-COS((A-E)*PI/180))")
+  field(OUT,  "MOTR:AS01:MC02:CH2:MOTOR CPP")
+}
+#-----------------------
+record(mbbo,"$(P):GRABIMAGES:CAMERA") {
+    field(DESC, "Select camera")
+    field(ZRVL, "0")
+    field(ZRST, "ANDOR1")
+    field(ONVL, "1")
+    field(ONST, "DirectD")
+    field(TWVL, "2")
+    field(TWST, "ASPS01")
+    field(THVL, "3")
+    field(THST, "ASPS02")
+    field(FRVL, "4")
+    field(FRST, "ASPS03")
+    field(FVVL, "5")
+    field(FVST, "ASPS04")
+    field(SXVL, "6")
+    field(SXST, "ASPS05")
+    field(SVVL, "7")
+    field(SVST, "ASPS06")
+    field(EIVL, "8")
+    field(EIST, "ASPS07")
+    field(VAL,  "0")
+    field(PINI, "1")
+}
+record(bo, "$(P):SCAN:SSBEAM") {
+  field(DESC, "Single-shot beam enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(bo, "$(P):SCAN:SSBEAMPUMP") {
+  field(DESC, "Single-shot beam and pump enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+#--- Z-lock ---------------------
+record(bo, "$(P):Z:LOCK:ENABLE") {
+  field(DESC, "Lock Z to X")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(ao, "$(P):Z:LOCK:SLOPE") {
+  field(DESC, "Z lock slope")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(ao, "$(P):Z:LOCK:INT") {
+  field(DESC, "Z lock intercept")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+#--- Y-lock ---------------------
+record(bo, "$(P):Y:LOCK:ENABLE") {
+  field(DESC, "Lock Y to X")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(ao, "$(P):Y:LOCK:SLOPE") {
+  field(DESC, "Y lock slope")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(ao, "$(P):Y:LOCK:INT") {
+  field(DESC, "Y lock intercept")
+  field(PREC, "3")
+  field(EGU,  "")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+#--------------------------------------
+record(bo, "$(P):MULTISTATIC:ENABLE") {
+  field(DESC, "Enable multiple static images")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(longout, "$(P):GRABIMAGES:NSTATIC") {
+  field(DESC, "Number of static images")
+  field(VAL,  "3")
+  field(PINI, "1")
+}
+
+
+
+

@@ -1,0 +1,11 @@
+file ../pvCommon.req P=$(P)
+file ../scanPv.req P=$(P)
+$(P):SCAN:SSBEAM
+$(P):SCAN:SSBEAMPUMP
+$(P):Z:LOCK:ENABLE
+$(P):Z:LOCK:SLOPE
+$(P):Z:LOCK:INT
+$(P):GRABIMAGES:NSTATIC
+$(P):MULTISTATIC:ENABLE
+
+

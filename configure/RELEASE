@@ -1,0 +1,11 @@
+# RELEASE - Location of external support modules
+#
+
+include $(TOP)/../../../RELEASE_SITE
+
+EPICS_MODULES=$(EPICS_SITE_TOP)/modules
+
+AUTOSAVE=$(EPICS_MODULES)/autosave/R5.7.1
+
+EPICS_BASE=$(EPICS_SITE_TOP)/base
+

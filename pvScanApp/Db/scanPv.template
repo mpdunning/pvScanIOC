@@ -1,0 +1,138 @@
+#--- SCANPV $(N)  ----------------------------------------
+record(stringout, "$(P):SCANPV$(N):DESC") {
+  field(DESC, "SCANPV $(N) description")
+  field(VAL,  "SCANPV $(N)")
+  field(PINI, "1")
+}
+record(stringout, "$(P):SCANPV$(N):PVNAME") {
+  field(DESC, "Enter SCANPV $(N) PV name")
+  field(VAL,  "MY:PV:NAME")
+  field(PINI, "1")
+}
+record(mbbo,"$(P):SCANPV$(N):PVTYPE") {
+    field(DESC, "Choose SCANPV $(N) PV type")
+    field(ZRVL, "0")
+    field(ZRST, "Ordinary PV (no RBV)")
+    field(ONVL, "1")
+    field(ONST, "Motor")
+    field(TWVL, "2")
+    field(TWST, "Pollux Motor")
+    field(THVL, "3")
+    field(THST, "Beckhoff Motor")
+    field(FRVL, "4")
+    field(FRST, "Magnet")
+    field(FVVL, "5")
+    field(FVST, "Lakeshore")
+    field(VAL,  "0")
+    field(PINI, "1")
+}
+record(ai, "$(P):SCANPV$(N):VAL") {
+  field(PREC, "$(PREC)")
+  field(PINI, "1")
+}
+record(ai, "$(P):SCANPV$(N):RBV") {
+  field(PREC, "$(PREC)")
+  field(PINI, "1")
+}
+record(ao, "$(P):SCANPV$(N):START") {
+  field(DESC, "SCANPV $(N) start")
+  field(PREC, "$(PREC)")
+  field(FLNK, "$(P):SCANPV$(N):INC.PROC")
+  field(PINI, "1")
+}
+record(ao, "$(P):SCANPV$(N):STOP") {
+  field(DESC, "SCANPV $(N) stop")
+  field(PREC, "$(PREC)")
+  field(FLNK, "$(P):SCANPV$(N):INC.PROC")
+  field(PINI, "1")
+}
+record(longout, "$(P):SCANPV$(N):NSTEPS") {
+  field(DESC, "SCANPV $(N) no. of steps to scan")
+  field(DRVL, "2")
+  field(DRVH, "65535")
+  field(LOPR, "2")
+  field(HOPR, "65535")
+  field(FLNK, "$(P):SCANPV$(N):INC.PROC")
+  field(PINI, "1")
+}
+record(calc, "$(P):SCANPV$(N):INC") {
+  field(DESC, "SCANPV $(N) scan increment")
+  field(PREC, "$(PREC)")
+  field(INPA, "$(P):SCANPV$(N):START")
+  field(INPB, "$(P):SCANPV$(N):STOP")
+  field(INPC, "$(P):SCANPV$(N):NSTEPS")
+  field(CALC, "(B-A)/(C-1)")
+}
+record(ao, "$(P):SCANPV$(N):SPEED") {
+  field(DESC, "SCANPV $(N) speed")
+  field(PREC, "$(PREC)")
+  field(PINI, "1")
+}
+record(ao, "$(P):SCANPV$(N):OFFSET") {
+  field(DESC, "SCANPV $(N) offset")
+  field(PREC, "$(PREC)")
+  field(PINI, "1")
+}
+record(ao, "$(P):SCANPV$(N):SETTLETIME") {
+  field(DESC, "SCANPV $(N) settle time")
+  field(PREC, "2")
+  field(EGU,  "s")
+  field(DRVL, "0")
+  field(DRVH, "65535")
+  field(LOPR, "0")
+  field(HOPR, "65535")
+  field(VAL,  "0.5")
+  field(PINI, "1")
+}
+record(ao, "$(P):SCANPV$(N):DELTA") {
+  field(DESC, "SCANPV $(N) delta threshold")
+  field(PREC, "$(PREC)")
+  field(VAL,  "0.005")
+  field(PINI, "1")
+}
+#--- Pre-scan -----------------------------
+record(ao, "$(P):SCANPV$(N):PRE_START") {
+  field(DESC, "SCANPV $(N) pre-scan start")
+  field(PREC, "$(PREC)")
+  field(FLNK, "$(P):SCANPV$(N):PRE_INC.PROC")
+  field(PINI, "1")
+}
+record(ao, "$(P):SCANPV$(N):PRE_STOP") {
+  field(DESC, "SCANPV $(N) pre-scan stop")
+  field(PREC, "$(PREC)")
+  field(FLNK, "$(P):SCANPV$(N):PRE_INC.PROC")
+  field(PINI, "1")
+}
+record(longout, "$(P):SCANPV$(N):PRE_NSTEPS") {
+  field(DESC, "SCANPV $(N) no. of steps to pre-scan")
+  field(DRVL, "2")
+  field(DRVH, "65535")
+  field(LOPR, "2")
+  field(HOPR, "65535")
+  field(FLNK, "$(P):SCANPV$(N):PRE_INC.PROC")
+  field(PINI, "1")
+}
+record(calc, "$(P):SCANPV$(N):PRE_INC") {
+  field(DESC, "SCANPV $(N) pre-scan increment")
+  field(PREC, "$(PREC)")
+  field(INPA, "$(P):SCANPV$(N):PRE_START")
+  field(INPB, "$(P):SCANPV$(N):PRE_STOP")
+  field(INPC, "$(P):SCANPV$(N):PRE_NSTEPS")
+  field(CALC, "(B-A)/(C-1)")
+}
+
+#--- Random scan -----------------------------
+record(bo, "$(P):SCANPV$(N):RANDSCAN") { 
+  field(DESC, "Random scan enable") 
+  field(ZNAM, "Disabled") 
+  field(ONAM, "Enabled") 
+  field(VAL,  "0") 
+  field(PINI, "1") 
+}
+record(waveform, "$(P):SCANPV$(N):RAND_VALS") {
+  field(DESC, "SCANPV $(N) random scan vals")
+  field(FTVL, "CHAR")
+  field(NELM, "256")
+  field(PINI, "1")
+}
+

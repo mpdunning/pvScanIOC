@@ -1,0 +1,10 @@
+#--- Shutter $(N) ----------------------------------------
+record(bo, "$(P):SHUTTER$(N):ENABLE") {
+  field(DESC, "Shutter $(N) enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
+
