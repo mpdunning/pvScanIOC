@@ -23,6 +23,7 @@ for (( i=1; i<=$n; i++ )); do
     echo "\$(P):SCANPV$i:PRE_INC"
     echo "\$(P):SCANPV$i:RANDSCAN"
     echo "\$(P):SCANPV$i:RAND_VALS"
+    echo "\$(P):SCANPV$i:RBVNAME"
     echo
 done
 

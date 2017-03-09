@@ -7,4 +7,10 @@ record(bo, "$(P):SHUTTER$(N):ENABLE") {
   field(PINI, "1")
 }
 
+record(bi, "$(P):SHUTTER$(N):INITIAL") {
+  field(DESC, "Shutter $(N) initial state")
+  field(ZNAM, "Closed")
+  field(ONAM, "Open")
+}
+
 

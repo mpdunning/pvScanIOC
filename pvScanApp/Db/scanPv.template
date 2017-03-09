@@ -6,7 +6,7 @@ record(stringout, "$(P):SCANPV$(N):DESC") {
 }
 record(stringout, "$(P):SCANPV$(N):PVNAME") {
   field(DESC, "Enter SCANPV $(N) PV name")
-  field(VAL,  "MY:PV:NAME")
+  field(VAL,  "MY:PV:NAME_$(N)")
   field(PINI, "1")
 }
 record(mbbo,"$(P):SCANPV$(N):PVTYPE") {
@@ -23,11 +23,18 @@ record(mbbo,"$(P):SCANPV$(N):PVTYPE") {
     field(FRST, "Magnet")
     field(FVVL, "5")
     field(FVST, "Lakeshore")
+    field(SXVL, "6")
+    field(SXST, "PV with RBV")
     field(VAL,  "0")
     field(PINI, "1")
 }
 record(ai, "$(P):SCANPV$(N):VAL") {
   field(PREC, "$(PREC)")
+  field(PINI, "1")
+}
+record(stringout, "$(P):SCANPV$(N):RBVNAME") {
+  field(DESC, "Enter SCANPV $(N) RBV PV name")
+  field(VAL,  "MY:RBV:NAME_$(N)")
   field(PINI, "1")
 }
 record(ai, "$(P):SCANPV$(N):RBV") {

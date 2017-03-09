@@ -111,7 +111,8 @@ record(ao, "$(P):BEAMRATE") {
   field(VAL,  "10")
   field(PINI, "1")
 }
-#--- image grabbing ----------------------------------------
+
+#--- Image grabbing ----------------------------------------
 record(bo, "$(P):GRABIMAGES:ENABLE") {
   field(DESC, "Grab images enable")
   field(ZNAM, "Disabled")
@@ -130,10 +131,14 @@ record(waveform, "$(P):IMAGE:FILEPATH") {
   field(NELM, "150")
   field(PINI, "1")
 }
-record(bo, "$(P):GRABIMAGES:CAPTUREMODE") {
+record(mbbo, "$(P):GRABIMAGES:CAPTUREMODE") {
   field(DESC, "Grab images capture mode")
-  field(ZNAM, "Individual")
-  field(ONAM, "Buffered")
+  field(ZRST, "Individual")
+  field(ONST, "Buffered")
+  field(TWST, "Single-CBA")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
   field(VAL,  "0")
   field(PINI, "1")
 }
@@ -188,7 +193,33 @@ record(longout, "$(P):GRABIMAGES:DATATIME") {
   field(EGU,  "s")
   field(PINI, "1")
 }
-#--- data logging ----------------------------------------
+record(bo, "$(P):GRABIMAGES:WAIT_NEW") {
+  field(DESC, "Wait for new image flag")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(bi, "$(P):GRABIMAGES:ACQUIRE_RBV") {
+  field(DESC, "Acquiring readback")
+  field(INP,  "")
+  field(ZNAM, "Done")
+  field(ONAM, "Collecting")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MINOR")
+  field(PINI, "1")
+}
+record(bi, "$(P):GRABIMAGES:CAPTURE_RBV") {
+  field(DESC, "Capturing readback")
+  field(INP,  "")
+  field(ZNAM, "Done")
+  field(ONAM, "Capturing")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MINOR")
+  field(PINI, "1")
+}
+
+#--- Data logging ----------------------------------------
 record(longout, "$(P):DATA:NPTS") {
   field(DESC, "N points to log")
   field(PINI, "1")
@@ -243,6 +274,7 @@ record(bo, "$(P):DATA:FORMAT") {
   field(VAL,  "1")
   field(PINI, "1")
 }
+
 # Log file ---------------------------
 record(waveform, "$(P):LOG:FILENAME") {
   field(DESC, "Log file name")
@@ -258,4 +290,12 @@ record(bo, "$(P):LOG:ENABLE") {
   field(PINI, "1")
 }
 
+#--- Debugging ---------------------------
+record(bo, "$(P):DEBUG:ENABLE") {
+  field(DESC, "Debugging enable")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
 

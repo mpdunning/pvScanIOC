@@ -38,7 +38,7 @@ record(longout, "$(P):NRESETS") {
   field(VAL,  "1")
   field(PINI, "1")
 }
-#---------------------------------------------
+#--- For UED TJ/Ulf ------------------------------------------
 record(ao, "$(P):MOVE:PHI:INC") {
   field(DESC, "Move Phi increment")
   field(LOPR, "0")
@@ -65,7 +65,6 @@ record(ao, "$(P):MOVE:PHI:WRITE") {
 record(fanout, "$(P):MOVE:PHI:FO") {
   field(DESC, "Move Phi fanout")
   field(LNK1,  "$(P):MOVE:Y.PROC")
-#  field(LNK2,  "ASTA:POLX01:BO:GOABS.PROC")
 }
 record(ai, "$(P):MOVE:PHI:RBV") {
   field(DESC, "Move Phi")
@@ -110,14 +109,6 @@ record(mbbo,"$(P):GRABIMAGES:CAMERA") {
     field(TWST, "13PS7")
     field(THVL, "3")
     field(THST, "DirectD")
-#    field(FRVL, "4")
-#    field(FRST, "13PS4")
-#    field(FVVL, "5")
-#    field(FVST, "13PS5")
-#    field(SXVL, "6")
-#    field(SXST, "13PS6")
-#    field(SVVL, "7")
-#    field(SVST, "13PS7")
     field(VAL,  "1")
     field(PINI, "1")
 }
@@ -135,7 +126,7 @@ record(bo, "$(P):SCAN:SSBEAMPUMP") {
   field(VAL,  "0")
   field(PINI, "1")
 }
-#--- Z-lock ---------------------
+#--- For UED WDM Z-lock ---------------------
 record(bo, "$(P):Z:LOCK:ENABLE") {
   field(DESC, "Lock Z to X")
   field(ZNAM, "No")
@@ -157,7 +148,7 @@ record(ao, "$(P):Z:LOCK:INT") {
   field(VAL,  "0")
   field(PINI, "1")
 }
-#--- Y-lock ---------------------
+#--- For UED/WDM Y-lock ---------------------
 record(bo, "$(P):Y:LOCK:ENABLE") {
   field(DESC, "Lock Y to X")
   field(ZNAM, "No")
@@ -179,7 +170,7 @@ record(ao, "$(P):Y:LOCK:INT") {
   field(VAL,  "0")
   field(PINI, "1")
 }
-#--------------------------------------
+#--- For WDM ------------------------------------
 record(bo, "$(P):MULTISTATIC:ENABLE") {
   field(DESC, "Enable multiple static images")
   field(ZNAM, "No")
@@ -193,6 +184,70 @@ record(longout, "$(P):GRABIMAGES:NSTATIC") {
   field(PINI, "1")
 }
 
+#--- For UED scan acquisitions ----------------
+record(bo, "$(P):ACQ:FIXED") {
+  field(DESC, "Enable fixed acquisition")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):ACQ:PUMP_PROBE") {
+  field(DESC, "Enable pump-probe acquisition")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(ao, "$(P):ACQ:DELAY1") {
+  field(DESC, "Acquisition delay 1")
+  field(PREC, "2")
+  field(EGU,  "s")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):ACQ:STATIC") {
+  field(DESC, "Enable static acquisition")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(ao, "$(P):ACQ:DELAY2") {
+  field(DESC, "Acquisition delay 2")
+  field(PREC, "2")
+  field(EGU,  "s")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):ACQ:PUMP_BG") {
+  field(DESC, "Enable pump BG acquisition")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(ao, "$(P):ACQ:DELAY3") {
+  field(DESC, "Acquisition delay 3")
+  field(PREC, "2")
+  field(EGU,  "s")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):ACQ:DARK_CURRENT") {
+  field(DESC, "Enable dark current acquisition")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
 
 
 
