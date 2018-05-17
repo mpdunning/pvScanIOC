@@ -249,6 +249,50 @@ record(bo, "$(P):ACQ:DARK_CURRENT") {
   field(PINI, "1")
 }
 
+##--- For shutters -----------------------------------
+#record(mbbo, "$(P):SHUTTER1:CHOICE") {
+#  field(DESC, "Shutter 1 choice")
+#  field(ZRVL, "0")
+#  field(ONVL, "1")
+#  field(TWVL, "2")
+#  field(THVL, "3")
+#  field(ZRST, "None")
+#  field(ONST, "Drive shutter")
+#  field(TWST, "Pump IR shutter")
+#  field(THST, "Pump UV shutter")
+#  field(VAL,  "1")
+#  field(PINI, "1")
+#}
+#
+#record(mbbo, "$(P):SHUTTER2:CHOICE") {
+#  field(DESC, "Shutter 2 choice")
+#  field(ZRVL, "0")
+#  field(ONVL, "1")
+#  field(TWVL, "2")
+#  field(THVL, "3")
+#  field(ZRST, "None")
+#  field(ONST, "Drive shutter")
+#  field(TWST, "Pump IR shutter")
+#  field(THST, "Pump UV shutter")
+#  field(VAL,  "2")
+#  field(PINI, "1")
+#}
+#
+#record(mbbo, "$(P):SHUTTER3:CHOICE") {
+#  field(DESC, "Shutter 3 choice")
+#  field(ZRVL, "0")
+#  field(ONVL, "1")
+#  field(TWVL, "2")
+#  field(THVL, "3")
+#  field(ZRST, "None")
+#  field(ONST, "Drive shutter")
+#  field(TWST, "Pump IR shutter")
+#  field(THST, "Pump UV shutter")
+#  field(VAL,  "0")
+#  field(PINI, "1")
+#}
+
+
 
 
 

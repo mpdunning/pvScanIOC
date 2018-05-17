@@ -3,18 +3,21 @@ record(stringout, "$(P):IOC") {
   field(VAL,  "$(IOC)")
   field(PINI, "1")
 }
+
 record(waveform, "$(P):SCRIPT") {
   field(DESC, "pvScan script")
   field(FTVL, "CHAR")
   field(NELM, "150")
   field(PINI, "1")
 }
+
 record(waveform, "$(P):SCRIPT:ABORT") {
   field(DESC, "pvScan abort script")
   field(FTVL, "CHAR")
   field(NELM, "150")
   field(PINI, "1")
 }
+
 record(bo, "$(P):RUNFLAG") {
   field(DESC, "pvScan run flag")
   field(ZNAM, "Stopped")
@@ -24,6 +27,7 @@ record(bo, "$(P):RUNFLAG") {
   field(VAL,  "0")
   field(PINI, "1")
 }
+
 record(bo, "$(P):SCAN:PRESCAN") {
   field(DESC, "Prescan enable")
   field(ZNAM, "Disabled")
@@ -31,50 +35,65 @@ record(bo, "$(P):SCAN:PRESCAN") {
   field(VAL,  "0")
   field(PINI, "1")
 }
+
 record(waveform, "$(P):WRAPPERSCRIPT") {
   field(DESC, "pvScan wrapper script")
   field(FTVL, "CHAR")
   field(NELM, "150")
   field(PINI, "1")
 }
+
 record(bo, "$(P):WRAPPERFLAG") {
   field(DESC, "pvScan wrapper flag")
   field(VAL,  "0")
   field(PINI, "1")
 }
+
 record(longout, "$(P):WRAPPERPID") {
   field(DESC, "PID of wrapper process")
 }
+
 record(longout, "$(P):NRUNS") {
   field(DESC, "Number of runs")
   field(LOPR, "1")
-  field(HOPR, "1e6")
+  field(HOPR, "1000000")
   field(DRVL, "1")
-  field(DRVH, "1e6")
+  field(DRVH, "1000000")
   field(VAL,  "1")
   field(PINI, "1")
 }
-record( stringin, "$(P):TIME"){
-  field( DESC, "current date and time")
-  field( DTYP, "Soft Timestamp")
-  field( SCAN, "1 second")
-  field( INP,  "@%m/%d/%Y %H:%M:%S")
+
+record(stringin, "$(P):DATE"){
+  field(DESC, "Current date")
+  field(DTYP, "Soft Timestamp")
+  field(SCAN, "1 second")
+  field(INP,  "@%m/%d/%Y")
+  field(FLNK, "$(P):TIME.PROC")
 }
+
+record(stringin, "$(P):TIME"){
+  field(DESC, "Current time")
+  field(DTYP, "Soft Timestamp")
+  field(INP,  "@%H:%M:%S")
+  field(FLNK, "$(P):DATE_TIME.PROC")
+}
+
+record(stringin, "$(P):DATE_TIME"){
+  field(DESC, "Current date and time")
+  field(DTYP, "Soft Timestamp")
+  field(INP,  "@%m/%d/%Y %H:%M:%S")
+}
+
 record(waveform, "$(P):MSG") {
-  field(DESC, "Print message")
+  field(DESC, "Status message")
   field(FTVL, "CHAR")
   field(NELM, "100")
 }
+
 record(longin, "$(P):PID") {
   field(DESC, "PID of process")
 }
-record(bo, "$(P):NSIDES") {
-  field(DESC, "1 or 2-sided scan")
-  field(ZNAM, "Both sides")
-  field(ONAM, "One side")
-  field(VAL,  "0")
-  field(PINI, "1")
-}
+
 record(bo, "$(P):SCAN:ENABLE") {
   field(DESC, "Scan enable")
   field(ZNAM, "Disabled")
@@ -82,16 +101,19 @@ record(bo, "$(P):SCAN:ENABLE") {
   field(VAL,  "1")
   field(PINI, "1")
 }
+
 record(stringout, "$(P):SCAN:NAME") {
   field(DESC, "Scan name")
   field(PINI, "1")
 }
+
 record(stringout, "$(P):SCAN:TARGETNAME") {
   field(DESC, "Target name")
   field(PINI, "1")
 }
+
 record(mbbo,"$(P):SCAN:MODE") {
-    field(DTYP, "Scan Mode")
+    field(DESC, "Scan Mode")
     field(ZRVL, "0")
     field(ZRST, "None")
     field(ONVL, "1")
@@ -105,10 +127,78 @@ record(mbbo,"$(P):SCAN:MODE") {
     field(VAL,  "1")
     field(PINI, "1")
 }
+
 record(ao, "$(P):BEAMRATE") {
   field(DESC, "Beam rep rate")
   field(PREC, "1")
   field(VAL,  "10")
+  field(PINI, "1")
+}
+
+record(mbbo,"$(P):SCAN:DATA_DEST") {
+    field(DESC, "Destination for data storage")
+    field(ZRVL, "0")
+    field(ZRST, "Short Term")
+    field(ONVL, "1")
+    field(ONST, "Medium Term")
+    field(TWVL, "2")
+    field(TWST, "Long Term")
+    field(VAL,  "2")
+    field(PINI, "1")
+}
+
+record(stringout, "$(P):SCAN:SAMPLE_NAME") {
+  field(DESC, "Sample name")
+  field(PINI, "1")
+}
+
+record(mbbo,"$(P):SCAN:TYPE") {
+    field(DESC, "Scan Type")
+    field(ZRVL, "0")
+    field(ZRST, "MD")
+    field(ONVL, "1")
+    field(ONST, "T-zero")
+    field(TWVL, "2")
+    field(TWST, "Background")
+    field(THVL, "3")
+    field(THST, "Run")
+    field(VAL,  "3")
+    field(PINI, "1")
+}
+
+record(mbbo,"$(P):MSG_SEVR") {
+    field(DESC, "Status msg alarm severity")
+    field(ZRVL, "0")
+    field(ZRST, "0")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "1")
+    field(ONSV, "MINOR")
+    field(TWVL, "2")
+    field(TWST, "2")
+    field(TWSV, "MAJOR")
+    field(VAL,  "0")
+    field(PINI, "1")
+}
+
+record(stringout, "$(P):SCAN:ID") {
+  field(DESC, "Scan ID")
+  field(PINI, "1")
+}
+
+#--- Shutters ----------------------------------------
+record(bo, "$(P):SHUTTERS:CHECK") {
+  field(DESC, "Shutter check enable")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+record(bo, "$(P):SHUTTERS:RESTORE") {
+  field(DESC, "Restore shutters after acq.")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "1")
   field(PINI, "1")
 }
 
@@ -218,6 +308,13 @@ record(bi, "$(P):GRABIMAGES:CAPTURE_RBV") {
   field(OSV,  "MINOR")
   field(PINI, "1")
 }
+record(bo, "$(P):GRABIMAGES:STOP_ACQ") {
+  field(DESC, "Stop acquisition after scan")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
 
 #--- Data logging ----------------------------------------
 record(longout, "$(P):DATA:NPTS") {
@@ -298,4 +395,96 @@ record(bo, "$(P):DEBUG:ENABLE") {
   field(VAL,  "0")
   field(PINI, "1")
 }
+
+#--- Run arbitrary user script during scan ---------------------------
+record(bo, "$(P):RUNSCRIPT:ENABLE") {
+  field(DESC, "Run script enable")
+  field(ZNAM, "Disable")
+  field(ONAM, "Enable")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+record(waveform, "$(P):RUNSCRIPT:PATH") {
+  field(DESC, "Run script path")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(PINI, "1")
+}
+
+#--- For scan correction ----------------
+record(bo, "$(P):SCANCOR:ENABLE") {
+  field(DESC, "Enable scan correction")
+  field(ZNAM, "Disable")
+  field(ONAM, "Enable")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(waveform, "$(P):SCANCOR:PATH") {
+  field(DESC, "Scan correction filepath")
+  field(FTVL, "CHAR")
+  field(NELM, "256")
+  field(PINI, "1")
+}
+
+record(waveform, "$(P):SCANCOR:PVNAME1") {
+  field(DESC, "Scan correction PV name")
+  field(FTVL, "CHAR")
+  field(NELM, "128")
+  field(PINI, "1")
+}
+
+record(waveform, "$(P):SCANCOR:PVNAME2") {
+  field(DESC, "Scan correction PV name")
+  field(FTVL, "CHAR")
+  field(NELM, "128")
+  field(PINI, "1")
+}
+
+record(mbbo,"$(P):SCANCOR:FITTYPE") {
+    field(DESC, "Interpolation type")
+    field(ZRVL, "0")
+    field(ZRST, "Zero")
+    field(ONVL, "1")
+    field(ONST, "Linear")
+    field(TWVL, "2")
+    field(TWST, "Quadratic")
+    field(THVL, "3")
+    field(THST, "Cubic")
+    field(VAL,  "1")
+    field(PINI, "1")
+}
+
+record(bo, "$(P):SCANCOR:CORRTYPE") {
+  field(DESC, "Correction type")
+  field(ZNAM, "Relative")
+  field(ONAM, "Absolute")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(ao, "$(P):SCANCOR:PVSCALE1") {
+  field(DESC, "Scan correction scale factor")
+  field(PREC, "3")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
+record(ao, "$(P):SCANCOR:PVSCALE2") {
+  field(DESC, "Scan correction scale factor")
+  field(PREC, "3")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):SCANCOR:SHOWPLOT") {
+  field(DESC, "Show fit plot")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+
+
 

@@ -13,4 +13,30 @@ record(bi, "$(P):SHUTTER$(N):INITIAL") {
   field(ONAM, "Open")
 }
 
+record(stringout, "$(P):SHUTTER$(N):PVNAME") {
+  field(DESC, "Enter Shutter $(N) PV")
+  field(VAL,  "")
+  field(PINI, "1")
+}
+
+record(mbbo,"$(P):SHUTTER$(N):TYPE") {
+    field(DESC, "Choose Shutter $(N) type")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "Skip")
+    field(ONST, "Binary PV")
+    field(TWST, "Lambda SC")
+    field(THST, "Thorlabs SC")
+    field(VAL,  "0")
+    field(PINI, "1")
+}
+
+record(stringout, "$(P):SHUTTER$(N):RBV") {
+  field(DESC, "Enter Shutter $(N) RBV PV")
+  field(VAL,  "")
+  field(PINI, "1")
+}
+
 

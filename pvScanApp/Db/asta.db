@@ -19,6 +19,8 @@ record(mbbo,"$(P):GRABIMAGES:CAMERA") {
     field(SVST, "ASPS06")
     field(EIVL, "8")
     field(EIST, "ASPS07")
+    field(NIVL, "9")
+    field(NIST, "ANDOR2")
     field(VAL,  "0")
     field(PINI, "1")
 }
@@ -147,6 +149,7 @@ record(calcout, "$(P):MOVE:Z") {
   field(CALC, "D + B*SIN((A-E)*PI/180) + C*(1-COS((A-E)*PI/180))")
   field(OUT,  "MOTR:AS01:MC02:CH2:MOTOR CPP")
 }
+
 #--- For UED WDM Z-lock ---------------------
 record(bo, "$(P):Z:LOCK:ENABLE") {
   field(DESC, "Lock Z to X")
@@ -169,6 +172,7 @@ record(ao, "$(P):Z:LOCK:INT") {
   field(VAL,  "0")
   field(PINI, "1")
 }
+
 #--- For UED WDM Y-lock ---------------------
 record(bo, "$(P):Y:LOCK:ENABLE") {
   field(DESC, "Lock Y to X")
@@ -191,6 +195,7 @@ record(ao, "$(P):Y:LOCK:INT") {
   field(VAL,  "0")
   field(PINI, "1")
 }
+
 #-- For UED WDM ------------------------------------
 record(bo, "$(P):SCAN:SSBEAM") {
   field(DESC, "Single-shot beam enable")
@@ -283,9 +288,6 @@ record(bo, "$(P):ACQ:DARK_CURRENT") {
   field(VAL,  "0")
   field(PINI, "1")
 }
-
-
-
 
 
 

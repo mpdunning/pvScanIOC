@@ -10,9 +10,9 @@ pv_registerRecordDeviceDriver pdbbase
 epicsEnvSet("N",           "05")
 epicsEnvSet("P",           "ASTA:PV$(N)")
 epicsEnvSet("DESC",        "WDM")
-epicsEnvSet("SCRIPT",      "/afs/slac/g/testfac/extras/scripts/pvScan/prod/asta/pvScan-ued-wdm.py")
-epicsEnvSet("WRAPPERSCRIPT", "/afs/slac/g/testfac/extras/scripts/pvScan/prod/wrappers/pvScan-multiScan.py")
-epicsEnvSet("SCRIPTABORT", "/afs/slac/g/testfac/extras/scripts/pvScan/prod/asta/pvScan-ued-wdm-abort.py")
+epicsEnvSet("SCRIPT",      "/afs/slac/g/testfac/extras/scripts/pvScan/R3.2/asta/pvScan-ued-wdm.py")
+epicsEnvSet("WRAPPERSCRIPT", "/afs/slac/g/testfac/extras/scripts/pvScan/R3.2/wrappers/pvScan-multiScan.py")
+epicsEnvSet("SCRIPTABORT", "/afs/slac/g/testfac/extras/scripts/pvScan/R3.2/asta/pvScan-ued-wdm-abort.py")
 
 save_restoreSet_status_prefix( "")
 save_restoreSet_IncompleteSetsOk( 1)

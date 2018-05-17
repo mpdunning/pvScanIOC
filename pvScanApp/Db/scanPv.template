@@ -94,7 +94,15 @@ record(ao, "$(P):SCANPV$(N):SETTLETIME") {
 record(ao, "$(P):SCANPV$(N):DELTA") {
   field(DESC, "SCANPV $(N) delta threshold")
   field(PREC, "$(PREC)")
+  field(DRVL, "0")
+  field(DRVH, "1e6")
+  field(LOPR, "0")
+  field(HOPR, "1e6")
   field(VAL,  "0.005")
+  field(PINI, "1")
+}
+record(longin, "$(P):SCANPV$(N):STEPCOUNT") {
+  field(DESC, "SCANPV $(N) step count")
   field(PINI, "1")
 }
 #--- Pre-scan -----------------------------
