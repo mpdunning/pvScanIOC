@@ -223,6 +223,27 @@ record(longout, "$(P):GRABIMAGES:NSTATIC") {
   field(VAL,  "3")
   field(PINI, "1")
 }
+record(longout, "$(P):GRABIMAGES:NBG") {
+  field(DESC, "Number of background images")
+  field(VAL,  "3")
+  field(PINI, "1")
+}
+record(mbbo,"$(P):GRABIMAGES:SSTRIGMODE") {
+    field(DESC, "Single-shot trigger mode")
+    field(ZRVL, "0")
+    field(ZRST, "Single-shot")
+    field(ONVL, "1")
+    field(ONST, "Continuous")
+    field(VAL,  "0")
+    field(PINI, "1")
+}
+record(bo, "$(P):GRABIMAGES:I0ENABLE") {
+  field(DESC, "Enable I0 acquisition")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
 
 #--- For UED scan acquisitions ----------------
 record(bo, "$(P):ACQ:FIXED") {
