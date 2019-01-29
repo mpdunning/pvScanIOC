@@ -63,6 +63,16 @@ record(longout, "$(P):NRUNS") {
   field(PINI, "1")
 }
 
+record(longout, "$(P):N_SCANS") {
+  field(DESC, "Number of scans per run")
+  field(LOPR, "1")
+  field(HOPR, "1000000")
+  field(DRVL, "1")
+  field(DRVH, "1000000")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
 record(stringin, "$(P):DATE"){
   field(DESC, "Current date")
   field(DTYP, "Soft Timestamp")
@@ -184,6 +194,33 @@ record(mbbo,"$(P):MSG_SEVR") {
 record(stringout, "$(P):SCAN:ID") {
   field(DESC, "Scan ID")
   field(PINI, "1")
+}
+
+record(stringout, "$(P):RUN:ID") {
+  field(DESC, "Run ID")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):ELOG:ENABLE") {
+  field(DESC, "Auto elog enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
+record(longout, "$(P):SCAN:COUNT") {
+  field(DESC, "Scan count")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(mbbo,"$(P):EXP:NAME") {
+    field(DESC, "Experiment name")
+    field(ZRVL, "0")
+    field(ZRST, "TestExp0")
+    field(VAL,  "0")
+    field(PINI, "1")
 }
 
 #--- Shutters ----------------------------------------
@@ -389,7 +426,15 @@ record(bo, "$(P):LOG:ENABLE") {
 
 #--- Debugging ---------------------------
 record(bo, "$(P):DEBUG:ENABLE") {
-  field(DESC, "Debugging enable")
+  field(DESC, "Script debugging enable")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
+
+record(bo, "$(P):WDEBUG:ENABLE") {
+  field(DESC, "Wrapper debugging enable")
   field(ZNAM, "Off")
   field(ONAM, "On")
   field(VAL,  "0")
