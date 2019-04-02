@@ -21,6 +21,8 @@ record(mbbo,"$(P):GRABIMAGES:CAMERA") {
     field(EIST, "ASPS07")
     field(NIVL, "9")
     field(NIST, "ANDOR2")
+    field(TEVL, "10")
+    field(TEST, "ANDOR3")
     field(VAL,  "0")
     field(PINI, "1")
 }
