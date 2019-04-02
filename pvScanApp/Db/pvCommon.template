@@ -215,12 +215,28 @@ record(longout, "$(P):SCAN:COUNT") {
   field(PINI, "1")
 }
 
-record(mbbo,"$(P):EXP:NAME") {
+record(stringout,"$(P):EXP:NAME") {
     field(DESC, "Experiment name")
-    field(ZRVL, "0")
-    field(ZRST, "TestExp0")
-    field(VAL,  "0")
+    field(VAL,  "TestExp0")
     field(PINI, "1")
+}
+
+record(bo, "$(P):EXP:NAME_AUTOGET") {
+  field(DESC, "Get exp name from elog")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "1")
+  field(PINI, "1")
+}
+
+record(stringin, "$(P):EXP:NAME_RBV") {
+  field(DESC, "Exp name readback")
+  field(PINI, "1")
+}
+
+record(stringin, "$(P):SCAN:SAMPLE_NAME_RBV") {
+  field(DESC, "Sample name readback")
+  field(PINI, "1")
 }
 
 #--- Shutters ----------------------------------------
