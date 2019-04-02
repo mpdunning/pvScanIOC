@@ -6,7 +6,7 @@ record(stringout, "$(P):SCANPV$(N):DESC") {
 }
 record(stringout, "$(P):SCANPV$(N):PVNAME") {
   field(DESC, "Enter SCANPV $(N) PV name")
-  field(VAL,  "MY:PV:NAME_$(N)")
+  field(VAL,  "")
   field(PINI, "1")
 }
 record(mbbo,"$(P):SCANPV$(N):PVTYPE") {
@@ -34,7 +34,7 @@ record(ai, "$(P):SCANPV$(N):VAL") {
 }
 record(stringout, "$(P):SCANPV$(N):RBVNAME") {
   field(DESC, "Enter SCANPV $(N) RBV PV name")
-  field(VAL,  "MY:RBV:NAME_$(N)")
+  field(VAL,  "")
   field(PINI, "1")
 }
 record(ai, "$(P):SCANPV$(N):RBV") {
@@ -144,6 +144,7 @@ record(bo, "$(P):SCANPV$(N):RANDSCAN") {
   field(VAL,  "0") 
   field(PINI, "1") 
 }
+
 record(waveform, "$(P):SCANPV$(N):RAND_VALS") {
   field(DESC, "SCANPV $(N) random scan vals")
   field(FTVL, "CHAR")
@@ -151,3 +152,33 @@ record(waveform, "$(P):SCANPV$(N):RAND_VALS") {
   field(PINI, "1")
 }
 
+record(bo, "$(P):SCANPV$(N):T0_ENABLE") { 
+  field(DESC, "T0 scan enable") 
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL,  "0")
+  field(PINI, "1") 
+}
+
+record(ao, "$(P):SCANPV$(N):T0") {
+  field(DESC, "T0 position")
+  field(PREC, "$(PREC)")
+  field(EGU,  "mm")
+  field(PINI, "1")
+}
+
+record(mbbo,"$(P):SCANPV$(N):T0_DELAYUNITS") {
+    field(DESC, "T0 delay units")
+    field(ZRVL, "0")
+    field(ZRST, "us")
+    field(ONVL, "1")
+    field(ONST, "ns")
+    field(TWVL, "2")
+    field(TWST, "ps")
+    field(THVL, "3")
+    field(THST, "fs")
+    field(FRVL, "4")
+    field(FRST, "as")
+    field(VAL,  "2")
+    field(PINI, "1")
+}
