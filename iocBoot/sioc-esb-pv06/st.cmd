@@ -10,9 +10,9 @@ pv_registerRecordDeviceDriver pdbbase
 epicsEnvSet("N",             "06")
 epicsEnvSet("P",             "ESB:PV$(N)")
 epicsEnvSet("DESC",          "2 PV Scan")
-epicsEnvSet("SCRIPT",        "/afs/slac/g/testfac/extras/scripts/pvScan/prod/nlcta/pvScan-nlcta-2pv.py")
-epicsEnvSet("WRAPPERSCRIPT", "/afs/slac/g/testfac/extras/scripts/pvScan/prod/wrappers/pvScan-multiScan2.py")
-epicsEnvSet("SCRIPTABORT",   "/afs/slac/g/testfac/extras/scripts/pvScan/prod/nlcta/pvScan-nlcta-2pv-abort.py")
+epicsEnvSet("SCRIPT",        "/afs/slac/g/testfac/extras/scripts/pvScan/dev/nlcta/pvScan-nlcta-2pv.py")
+epicsEnvSet("WRAPPERSCRIPT", "/afs/slac/g/testfac/extras/scripts/pvScan/dev/wrappers/pvScan-multiScan.py")
+epicsEnvSet("SCRIPTABORT",   "/afs/slac/g/testfac/extras/scripts/pvScan/dev/nlcta/pvScan-nlcta-2pv-abort.py")
 
 save_restoreSet_status_prefix("")
 save_restoreSet_IncompleteSetsOk(1)
