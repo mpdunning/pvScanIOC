@@ -374,6 +374,11 @@ record(longin, "$(P):GRABIMAGES:IMAGEMODE_INITIAL") {
   field(DESC, "Initial image mode")
   field(PINI, "1")
 }
+record(longin, "$(P):GRABIMAGES:ACQUIRING_INITIAL") {
+  field(DESC, "Initial acquiring state")
+  field(PINI, "1")
+}
+
 
 #--- Data logging ----------------------------------------
 record(longout, "$(P):DATA:NPTS") {
