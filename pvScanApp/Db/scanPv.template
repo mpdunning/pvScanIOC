@@ -160,6 +160,7 @@ record(bo, "$(P):SCANPV$(N):T0_ENABLE") {
   field(PINI, "1") 
 }
 
+#--- Time-zero scan ---------------------------
 record(ao, "$(P):SCANPV$(N):T0") {
   field(DESC, "T0 position")
   field(PREC, "$(PREC)")
@@ -182,3 +183,25 @@ record(mbbo,"$(P):SCANPV$(N):T0_DELAYUNITS") {
     field(VAL,  "2")
     field(PINI, "1")
 }
+
+record(bo, "$(P):SCANPV$(N):T0_DIRECTION") { 
+  field(DESC, "T0 direction: pos or neg") 
+  field(ZNAM, "Pos")
+  field(ONAM, "Neg")
+  field(VAL,  "1")
+  field(PINI, "1") 
+}
+
+#--- Filename formatting ---------------------------
+record(longout, "$(P):SCANPV$(N):FILENAME_WIDTH") {
+  field(DESC, "Filename scanpv width")
+  field(VAL,  "8")
+  field(PINI, "1")
+}
+
+record(longout, "$(P):SCANPV$(N):FILENAME_PREC") {
+  field(DESC, "Filename scanpv precision")
+  field(VAL,  "4")
+  field(PINI, "1")
+}
+
