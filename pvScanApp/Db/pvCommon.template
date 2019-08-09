@@ -279,9 +279,11 @@ record(mbbo, "$(P):GRABIMAGES:CAPTUREMODE") {
   field(ZRST, "Individual")
   field(ONST, "Buffered")
   field(TWST, "Single-CBA")
+  field(THST, "Multiple")
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
+  field(THVL, "3")
   field(VAL,  "0")
   field(PINI, "1")
 }
