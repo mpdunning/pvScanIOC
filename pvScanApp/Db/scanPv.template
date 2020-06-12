@@ -91,6 +91,7 @@ record(ao, "$(P):SCANPV$(N):SETTLETIME") {
   field(VAL,  "0.5")
   field(PINI, "1")
 }
+
 record(ao, "$(P):SCANPV$(N):DELTA") {
   field(DESC, "SCANPV $(N) delta threshold")
   field(PREC, "$(PREC)")
@@ -101,10 +102,16 @@ record(ao, "$(P):SCANPV$(N):DELTA") {
   field(VAL,  "0.005")
   field(PINI, "1")
 }
+
 record(longin, "$(P):SCANPV$(N):STEPCOUNT") {
   field(DESC, "SCANPV $(N) step count")
   field(PINI, "1")
 }
+
+record(longin, "$(P):SCANPV$(N):NumStepsTotal") {
+  field(DESC, "Total num steps")
+}
+
 #--- Pre-scan -----------------------------
 record(ao, "$(P):SCANPV$(N):PRE_START") {
   field(DESC, "SCANPV $(N) pre-scan start")
@@ -188,6 +195,39 @@ record(bo, "$(P):SCANPV$(N):T0_DIRECTION") {
   field(DESC, "T0 direction: pos or neg") 
   field(ZNAM, "Pos")
   field(ONAM, "Neg")
+  field(VAL,  "1")
+  field(PINI, "1") 
+}
+
+#--- Scan position mode -----------------------------
+# This replaces (and includes) random scan mode
+record(mbbo, "$(P):SCANPV$(N):ScanPosMode") { 
+    field(DESC, "Scan position mode") 
+    field(ZRVL, "0")
+    field(ZRST, "Front panel")
+    field(ONVL, "1")
+    field(ONST, "Linear")
+    field(TWVL, "2")
+    field(TWST, "Random")
+    field(THVL, "3")
+    field(THST, "Back and Forth")
+    field(FRVL, "4")
+    field(FRST, "Reversed")
+    field(VAL,  "0")
+    field(PINI, "1")
+}
+
+record(waveform, "$(P):SCANPV$(N):ScanPosString") {
+    field(DESC, "Scan position string")
+    field(FTVL, "CHAR")
+    field(NELM, "256")
+    field(PINI, "1")
+}
+
+record(longout, "$(P):SCANPV$(N):ScanPosNumIter") { 
+  field(DESC, "Scan pos. num. iterations") 
+  field(DRVL, "1")
+  field(LOPR, "1")
   field(VAL,  "1")
   field(PINI, "1") 
 }
