@@ -29,6 +29,7 @@ record(mbbo,"$(P):SHUTTER$(N):TYPE") {
     field(ONST, "Binary PV")
     field(TWST, "Lambda SC")
     field(THST, "Thorlabs SC")
+    field(FRST, "Uniblitz")
     field(VAL,  "0")
     field(PINI, "1")
 }
