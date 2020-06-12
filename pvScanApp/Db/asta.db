@@ -213,6 +213,13 @@ record(bo, "$(P):SCAN:SSBEAMPUMP") {
   field(VAL,  "0")
   field(PINI, "1")
 }
+record(bo, "$(P):SCAN:POST_STATIC") {
+  field(DESC, "SS post-pump beam enable")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(VAL,  "0")
+  field(PINI, "1")
+}
 record(bo, "$(P):MULTISTATIC:ENABLE") {
   field(DESC, "Enable multiple static images")
   field(ZNAM, "No")
